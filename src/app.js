@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { router } from './Router/index'
+import { router } from './router'
 import App from './App.vue'
 import reset from 'reset-css'
 

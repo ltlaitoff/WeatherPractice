@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import { CityShowMore } from '../Components'
+import CityShowMore from '../components/CityShowMore.vue'
+
 export default {
 	name: 'CityInfo',
 	props: {

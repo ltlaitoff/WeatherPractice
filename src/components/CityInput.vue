@@ -3,36 +3,20 @@
 		<div class="item-container">
 			<h2>Додавання міста</h2>
 			<p>Введіть назву міста</p>
-			<input
-				type="text"
-				id="city-name"
-				placeholder="Введіть місто"
-				v-model="newCity"
-				class="data-input"
-			/>
+			<input type="text" id="city-name" placeholder="Введіть місто" v-model="newCity" class="data-input" />
 			<p>{{ error }}</p>
-			<button
-				@click="addNewCity"
-				class="button-style"
-			>
+			<button @click="addNewCity" class="button-style">
 				Додати
 			</button>
 		</div>
 		<div class="item-container">
 			<h2>Вибір міста</h2>
 			<p>Оберіть місто</p>
-			<select
-				id="city-choose"
-				v-model="currentCity"
-				class="data-input"
-			>
+			<select id="city-choose" v-model="currentCity" class="data-input">
 				<option v-for="item in cityList">{{ item }}</option>
 			</select>
 			<p></p>
-			<router-link
-				:to="`/weather/${currentCity}`"
-				class="button-style"
-			>
+			<router-link :to="`/weather/${currentCity}`" class="button-style">
 				Погода
 			</router-link>
 		</div>
@@ -42,6 +26,7 @@
 <script>
 import { defineComponent } from 'vue'
 const cities = require('cities-list')
+
 export default defineComponent({
 	name: 'CityInput',
 	props: {
@@ -58,7 +43,7 @@ export default defineComponent({
 			error: ''
 		}
 	},
-	mounted() {},
+	mounted() { },
 	methods: {
 		addNewCity() {
 			if (this.isExists()) {
@@ -100,6 +85,7 @@ export default defineComponent({
 * {
 	box-sizing: border-box;
 }
+
 .container {
 	background: rgba(0, 0, 0, 0.7);
 	max-width: 720px;
@@ -136,6 +122,7 @@ h2 {
 	margin-bottom: 5px;
 	position: relative;
 }
+
 p {
 	margin-bottom: 5px;
 	font-size: 18px;

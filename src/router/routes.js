@@ -1,4 +1,5 @@
-import { CityInfo, Home } from '../Views'
+import CityInfo from '../views/CityInfo.vue'
+import Home from '../views/Home.vue'
 
 const routes = [
 	{ path: '/', component: Home },

@@ -1,18 +1,13 @@
 <template>
 	<CityInput :cityList="cityList"></CityInput>
-	<CityShow
-		:item="currentPositionCity"
-		v-if="currentPositionCity"
-	></CityShow>
-	<CityShow
-		v-for="item in cityList"
-		:item="item"
-	></CityShow>
+	<CityShow :item="currentPositionCity" v-if="currentPositionCity"></CityShow>
+	<CityShow v-for="item in cityList" :item="item"></CityShow>
 </template>
 
 <script>
-import { CityInput, CityShow } from '../Components'
-import { Api } from '../Api'
+import CityInput from '../components/CityInput.vue'
+import CityShow from '../components/CityShow.vue'
+import { Api } from '../api'
 
 export default {
 	name: 'Home',
