@@ -3,12 +3,21 @@
 		<div class="item-container">
 			<h2>Додавання міста</h2>
 			<p>Введіть назву міста</p>
-			<input type="text" id="city-name" placeholder="Введіть місто" v-model="newCity" class="data-input" />
-			<p>{{ error }}</p>
-			<button @click="addNewCity" class="button-style">
-				Додати
-			</button>
+			<div class="drop-list--wrapper">
+				<input type="text" id="city-name" placeholder="Введіть місто" v-model="newCity" class="data-input" />
+				<div class="drop-list" v-if="findedCities">
+					<button class="drop-list--item" v-for="findCity in findedCities" :key="findCity"
+						@click="onFindCityButtonClick(findCity)">{{
+							findCity
+						}}</button>
+				</div>
+			</div>
+			<p class="new-city--error">{{ error }}</p>
+
+
 		</div>
+
+
 		<div class="item-container">
 			<h2>Вибір міста</h2>
 			<p>Оберіть місто</p>
@@ -41,9 +50,22 @@ export default {
 			error: ''
 		}
 	},
-	mounted() { },
+	computed: {
+		findedCities() {
+			if (this.newCity === '') return
+
+			const citiesList = Object.keys(cities).map(item => item.toLowerCase())
+			const cityNameLowered = this.newCity.toLowerCase()
+
+			const allFindedCities = citiesList.filter((item) => {
+				return item.includes(cityNameLowered)
+			})
+
+			return allFindedCities.slice(0, 5)
+		}
+	},
 	methods: {
-		addNewCity() {
+		addNewCity(cityName) {
 			if (this.isExists()) {
 				if (!this.$parent.cityList.includes(this.newCity)) {
 					this.cityList.push(this.newCity)
@@ -64,7 +86,9 @@ export default {
 		isExists() {
 			this.allCities = Object.keys(cities)
 			this.allCities = this.allCities.map(item => item.toLowerCase())
-			if (this.allCities.includes(this.newCity.toLowerCase())) {
+
+			// if (this.allCities.includes(this.newCity.toLowerCase())) {
+			if (this.allCities.find(item => item.includes(this.newCity.toLowerCase()))) {
 				console.log('ok')
 				this.error = ''
 				return true
@@ -74,6 +98,10 @@ export default {
 				this.error = 'Такого міста не існує'
 				return false
 			}
+		},
+		onFindCityButtonClick(cityName) {
+			this.addNewCity(cityName)
+			this.newCity = ''
 		}
 	}
 }
@@ -107,7 +135,6 @@ export default {
 	padding: 10px;
 	border: transparent;
 	font-size: 18px;
-	margin-bottom: 10px;
 }
 
 .data-input:focus {
@@ -137,5 +164,42 @@ p {
 	text-align: center;
 	border: transparent;
 	font-size: 18px;
+}
+
+.drop-list--wrapper {
+	position: relative;
+}
+
+.drop-list {
+	margin-top: 10px;
+	padding: 10px;
+	border-radius: 10px;
+	position: absolute;
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	background: white;
+}
+
+
+.drop-list--item {
+	padding: 10px 25px;
+	width: 100%;
+
+	border: none;
+	border-radius: 20px;
+	background-color: transparent;
+	transition: 0.2s all;
+
+	text-transform: capitalize;
+}
+
+.drop-list--item:hover {
+	background-color: rgb(26, 27, 33);
+	color: white;
+}
+
+.new-city--error {
+	margin-top: 15px;
 }
 </style>
