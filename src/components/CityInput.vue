@@ -24,11 +24,9 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
 const cities = require('cities-list')
 
-export default defineComponent({
-	name: 'CityInput',
+export default {
 	props: {
 		cityList: {
 			type: Array,
@@ -78,7 +76,7 @@ export default defineComponent({
 			}
 		}
 	}
-})
+}
 </script>
 
 <style scoped>

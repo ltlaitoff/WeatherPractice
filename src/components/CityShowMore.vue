@@ -44,11 +44,8 @@
 
 <script>
 import { Api } from '../api'
-import axios from 'axios'
-import { defineComponent } from 'vue'
 
-export default defineComponent({
-	name: 'CityShowMore',
+export default {
 	props: {
 		item: {
 			type: String,
@@ -84,7 +81,7 @@ export default defineComponent({
 				})
 		}
 	}
-})
+}
 </script>
 
 <style scoped>

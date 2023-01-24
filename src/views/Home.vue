@@ -10,7 +10,6 @@ import CityShow from '../components/CityShow.vue'
 import { Api } from '../api'
 
 export default {
-	name: 'Home',
 	components: {
 		CityInput,
 		CityShow

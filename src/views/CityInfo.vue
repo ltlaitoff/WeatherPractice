@@ -6,7 +6,6 @@
 import CityShowMore from '../components/CityShowMore.vue'
 
 export default {
-	name: 'CityInfo',
 	props: {
 		city: ''
 	},

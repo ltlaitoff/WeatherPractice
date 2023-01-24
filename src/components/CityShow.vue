@@ -29,9 +29,8 @@
 
 <script>
 import { Api } from '../api'
-import { defineComponent } from 'vue'
 
-export default defineComponent({
+export default {
 	name: 'CityShow',
 	props: {
 		item: {
@@ -63,7 +62,7 @@ export default defineComponent({
 				})
 		}
 	}
-})
+}
 </script>
 
 <style scoped>
